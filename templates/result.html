@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Prediction Result</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:#e8f5e9;
+}
+
+.emoji-bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+font-size:40px;
+opacity:0.08;
+pointer-events:none;
+}
+
+nav{
+background:#2e7d32;
+padding:15px;
+}
+
+nav a{
+color:white;
+margin:20px;
+font-size:18px;
+text-decoration:none;
+}
+
+.box{
+background:white;
+padding:25px;
+width:500px;
+margin:auto;
+margin-top:30px;
+border-radius:12px;
+box-shadow:0 0 15px gray;
+}
+
+ul{
+text-align:left;
+margin-top:10px;
+}
+
+img{
+width:250px;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="emoji-bg">
+🌿🌱🍃🌿🌱🍃🌿🌱🍃🌿🌱🍃🌿🌱🍃🌿🌱🍃
+</div>
+
+<nav>
+<a href="/">🌿 Home</a>
+<a href="/history">📜 History</a>
+</nav>
+
+<h1>🌱 Prediction Result</h1>
+
+<div class="box">
+
+<img src="/uploads/{{image}}">
+
+<h2>Disease: {{disease}}</h2>
+
+<h3>Confidence: {{confidence}}%</h3>
+
+</div>
+
+
+<div class="box">
+
+<h2>🌿 Causes</h2>
+
+<ul>
+{% for c in cause %}
+<li>{{c}}</li>
+{% endfor %}
+</ul>
+
+</div>
+
+
+<div class="box">
+
+<h2>💊 Treatments</h2>
+
+<ul>
+{% for t in treatment %}
+<li>{{t}}</li>
+{% endfor %}
+</ul>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Search History</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:#f9fbe7;
+}
+
+nav{
+background:#2e7d32;
+padding:15px;
+}
+
+nav a{
+color:white;
+margin:20px;
+font-size:18px;
+text-decoration:none;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+margin-top:40px;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:10px 20px;
+}
+
+th{
+background:#66bb6a;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<a href="/">🌿 Home</a>
+<a href="/history">📜 History</a>
+</nav>
+
+<h1>📜 Search History</h1>
+
+<table>
+
+<tr>
+<th>Image</th>
+<th>Disease</th>
+<th>Confidence</th>
+</tr>
+
+{% for item in history %}
+
+<tr>
+<td>{{item.image}}</td>
+<td>{{item.disease}}</td>
+<td>{{item.confidence}}%</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
