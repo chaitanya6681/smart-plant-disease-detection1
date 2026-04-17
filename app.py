@@ -10,7 +10,14 @@ import cv2
 st.set_page_config(page_title="Plant Disease Detector 🌿", layout="wide")
 
 # -------- LOAD MODEL --------
-model = tf.keras.models.load_model("model/plant_disease_model.h5")
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model(
+        "model/plant_disease_model.h5",
+        compile=False
+    )
+
+model = load_model()
 
 classes = ["Early Blight","Healthy","Late Blight"]
 
