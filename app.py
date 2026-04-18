@@ -10,17 +10,27 @@ import cv2
 st.set_page_config(page_title="Plant Disease Detector 🌿", layout="wide")
 
 # -------- LOAD MODEL --------
+# -------- LOAD MODEL (FINAL FIX) --------
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model(
-        "model/plant_disease_model.h5",
-        compile=False
-    )
+    # Recreate model architecture manually
+    from tensorflow.keras.applications import MobileNetV2
+    from tensorflow.keras.layers import Dense, GlobalAveragePooling2D
+    from tensorflow.keras.models import Model
+
+    base_model = MobileNetV2(weights=None, include_top=False, input_shape=(224,224,3))
+    x = base_model.output
+    x = GlobalAveragePooling2D()(x)
+    predictions = Dense(3, activation='softmax')(x)
+
+    model = Model(inputs=base_model.input, outputs=predictions)
+
+    # Load weights only (avoids all BatchNorm/InputLayer errors)
+    model.load_weights("model/plant_disease_model.h5")
+
+    return model
 
 model = load_model()
-
-classes = ["Early Blight","Healthy","Late Blight"]
-
 # -------- HISTORY FILE --------
 history_file = "history.json"
 
